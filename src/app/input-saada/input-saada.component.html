@@ -1,0 +1,61 @@
+<form [formGroup]="form1" (ngSubmit)="log()"  action="">
+    <div class="firstname">
+        <label for="firstname">firstname</label>
+        <input type="text" formControlName="firstname">
+        <div *ngIf="!form1.controls.firstname?.valid && form1.controls.firstname?.touched" class="firstname-errors">
+            <div class="" *ngIf="form1.controls.firstname.errors?.required">first name is required.</div>
+            <div class="" *ngIf="form1.controls.firstname.errors?.minlength">firstname's min length should be greater than {{form1.controls.firstname.errors?.minlength.requiredLength}}</div>
+            <div class="" *ngIf="form1.controls.firstname.errors?.abCannotAppear">ab cannot appear together</div>
+        </div>
+    </div>
+    <div class="lastname">
+        <label for="lastname">lastname</label>
+        <input type="text" formControlName="lastname">
+        <div *ngIf="!form1.controls.lastname.valid && form1.controls.lastname.touched" class="lastname-errors">
+            <div class="" *ngIf="form1.controls.lastname.errors?.required">last name is required.</div>
+            <div class="" *ngIf="form1.controls.lastname.errors?.cannotContainSpace">no space allowed</div>
+            <div class="" *ngIf="form1.controls.lastname.errors?.minlength">lastname's min length should be greater than {{form1.controls.firstname.errors?.minlength.requiredLength}}</div>
+        </div>
+    </div>
+    <div class="age">
+        <label for="">Age</label>
+        <input formControlName="age"  type="number">
+        <div *ngIf="!form1.controls.age.valid && form1.controls.age.touched" class="age-errors">
+            <div *ngIf="form1.controls.age.errors?.required">age is required</div>
+            <div *ngIf="form1.controls.age.errors?.numberValidator">number should be less than 15</div>
+        </div>
+    </div>
+    <!-- select logic -->
+    <div class="select">
+        <select formControlName="select" name="" id="">
+            <option *ngFor="let opt of selectOpt" [value]="opt.id">{{opt.name}}</option>
+        </select>
+        <div *ngIf="!form1.controls.select.valid && form1.controls.select.touched" class="select-errors">
+            <div *ngIf="form1.controls.select.errors?.required" class="">select value.</div>
+        </div>
+    </div>
+    <div class="password">
+        <label for="">password</label>
+        <input formControlName="password" type="text">
+        <div *ngIf="!form1.controls.password.valid && form1.controls.password.touched" class="password-errors">
+            <div *ngIf="form1.controls.password.errors?.required">Pass required</div>
+            <div *ngIf="form1.controls.password.errors?.minlength">min length</div>
+        </div>
+    </div>
+    <div class="retype-password">
+        <label for="">password</label>
+        <input formControlName="retypePassword" type="text">
+        <div *ngIf="!form1.controls.retypePassword.valid" class="password-errors">
+            <div *ngIf="form1.controls.retypePassword.errors?.noNumber">number in password</div>            
+            <div *ngIf="form1.controls.retypePassword.pending && form1.controls.retypePassword.touched">communicating with the server...</div>
+            <div *ngIf="form1.controls.retypePassword.errors?.asyncCheck">mosh is occupied</div>
+        </div>
+    </div>
+
+    <div>
+        <!-- <div>Form error</div> -->
+        <div *ngIf="form1.errors">error in forms</div>
+    </div>
+    <button >Submit</button>
+
+</form>

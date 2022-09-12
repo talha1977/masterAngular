@@ -1,0 +1,14 @@
+<app-navbar></app-navbar>
+<router-outlet></router-outlet>
+<app-footer></app-footer>
+
+<button (click)="logout()" class="btn">Logout</button>
+
+<div class="routes">
+  <div class="inline" routerLinkActive="active" routerLink="./contact">
+    Contact
+  </div>
+  <div class="inline" routerLinkActive="active" routerLink="./services">
+    Services
+  </div>
+</div>
